@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An accessible, responsive article card exploring how coordinated high pressing shapes modern soccer tactics.">
+  <meta name="color-scheme" content="light dark">
+  <title>The High Press | Tactical Field Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#article-card" aria-label="Tactical Field Notes home">
+        <span class="brand__mark" aria-hidden="true">TF</span>
+        <span class="brand__text">Tactical Field Notes</span>
+      </a>
+
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+        <span class="theme-toggle__icon" aria-hidden="true">◐</span>
+        <span class="theme-toggle__label">Dark mode</span>
+      </button>
+    </header>
+
+    <main>
+      <article class="card" id="article-card">
+        <div class="card__media">
+          <img
+            class="card__image"
+            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&amp;w=1200&amp;auto=format&amp;fit=crop"
+            alt="A soccer ball resting on green turf under stadium lights"
+            width="1200"
+            height="800"
+            decoding="async"
+          >
+          <p class="card__eyebrow">Modern football tactics</p>
+        </div>
+
+        <div class="card__content">
+          <div class="card__meta">
+            <span class="badge">Match analysis</span>
+            <span class="read-time">11 min read</span>
+          </div>
+
+          <h1 class="card__title">How the High Press Reshaped the Modern Game</h1>
+
+          <p class="card__description">
+            Explore the triggers, angles, compact spacing, and collective movement that allow teams to recover possession close to goal without losing their defensive structure.
+          </p>
+
+          <a
+            class="action-link"
+            href="https://learning.coachesvoice.com/cv/in-focus-high-press/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Read article</span>
+            <span class="action-link__arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p>Built with semantic HTML, fluid type, perceptual color, and progressive enhancement.</p>
+    </footer>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.querySelector('#theme-toggle');
+    const label = toggle.querySelector('.theme-toggle__label');
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const applyTheme = (theme) => {
+      const isDark = theme === 'dark';
+      root.dataset.theme = theme;
+      toggle.setAttribute('aria-pressed', String(isDark));
+      label.textContent = isDark ? 'Light mode' : 'Dark mode';
+    };
+
+    applyTheme(savedTheme ?? (systemPrefersDark ? 'dark' : 'light'));
+
+    toggle.addEventListener('click', () => {
+      const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      localStorage.setItem('theme', nextTheme);
+    });
+  </script>
+</body>
+</html>
