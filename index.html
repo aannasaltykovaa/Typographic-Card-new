@@ -3,36 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A responsive editorial card explaining the principles behind soccer's modern high press.">
+  <meta name="description" content="A responsive editorial card explaining how coordinated high pressing shapes modern soccer.">
   <meta name="color-scheme" content="light dark">
   <title>The High Press | Touchline Journal</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="page-shell">
     <article class="story-card" aria-labelledby="story-title">
-      <div class="story-card__topbar">
-        <a class="brand" href="#story-title" aria-label="Touchline Journal home">
+      <header class="story-card__topbar">
+        <div class="brand" aria-label="Touchline Journal">
           <span class="brand__mark" aria-hidden="true">TJ</span>
           <span>Touchline Journal</span>
-        </a>
+        </div>
 
         <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
           <span class="theme-toggle__icon" aria-hidden="true">◐</span>
           <span class="theme-toggle__label">Dark mode</span>
         </button>
-      </div>
+      </header>
 
       <figure class="story-card__media">
         <img
           class="story-card__image"
-          src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=85&amp;w=1400&amp;auto=format&amp;fit=crop"
-          alt="A soccer ball on a green field under stadium lights"
+          src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=82&amp;w=1400&amp;auto=format&amp;fit=crop&amp;fm=webp"
+          alt="A soccer ball resting on a green field beneath stadium lights"
           width="1400"
           height="933"
+          fetchpriority="high"
           decoding="async"
         >
-        <figcaption class="story-card__image-label">Training ground study · pressing structure</figcaption>
+        <figcaption class="story-card__image-label">Training-ground study · pressing structure</figcaption>
       </figure>
 
       <div class="story-card__body">
@@ -41,15 +43,13 @@
           <span class="meta-note">11 min read</span>
         </div>
 
-        <h1 class="story-card__title" id="story-title">
-          Why the high press changed modern football
-        </h1>
+        <h1 class="story-card__title" id="story-title">Why the high press changed modern football</h1>
 
         <p class="story-card__description">
           The best pressing teams do more than run hard. They control space, recognize triggers, close passing lanes, and move as one compact unit.
         </p>
 
-        <div class="story-card__actions">
+        <footer class="story-card__footer">
           <a
             class="read-link"
             href="https://learning.coachesvoice.com/cv/in-focus-high-press/"
@@ -61,7 +61,7 @@
           </a>
 
           <p class="story-card__credit">Curated from Coaches’ Voice</p>
-        </div>
+        </footer>
       </div>
     </article>
   </main>
@@ -70,8 +70,23 @@
     const root = document.documentElement;
     const toggle = document.querySelector('#theme-toggle');
     const label = toggle.querySelector('.theme-toggle__label');
-    const storedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function getSavedTheme() {
+      try {
+        return localStorage.getItem('theme');
+      } catch {
+        return null;
+      }
+    }
+
+    function saveTheme(theme) {
+      try {
+        localStorage.setItem('theme', theme);
+      } catch {
+        /* The page still works when browser storage is unavailable. */
+      }
+    }
 
     function applyTheme(theme) {
       const isDark = theme === 'dark';
@@ -80,12 +95,19 @@
       label.textContent = isDark ? 'Light mode' : 'Dark mode';
     }
 
-    applyTheme(storedTheme ?? (prefersDark ? 'dark' : 'light'));
+    const savedTheme = getSavedTheme();
+    applyTheme(savedTheme ?? (systemTheme.matches ? 'dark' : 'light'));
 
     toggle.addEventListener('click', () => {
       const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
       applyTheme(nextTheme);
-      localStorage.setItem('theme', nextTheme);
+      saveTheme(nextTheme);
+    });
+
+    systemTheme.addEventListener('change', (event) => {
+      if (!getSavedTheme()) {
+        applyTheme(event.matches ? 'dark' : 'light');
+      }
     });
   </script>
 </body>
