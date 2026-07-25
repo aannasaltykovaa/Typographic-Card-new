@@ -3,66 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An accessible, responsive article card exploring how coordinated high pressing shapes modern soccer tactics.">
+  <meta name="description" content="A responsive tactical dossier explaining how the high press shapes modern soccer.">
   <meta name="color-scheme" content="light dark">
-  <title>The High Press | Tactical Field Notes</title>
+  <title>Pressing Dossier | The High Press</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="page-shell">
     <header class="site-header">
-      <a class="brand" href="#article-card" aria-label="Tactical Field Notes home">
-        <span class="brand__mark" aria-hidden="true">TF</span>
-        <span class="brand__text">Tactical Field Notes</span>
+      <a class="brand" href="#pressing-dossier" aria-label="Touchline Index home">
+        <span class="brand__symbol" aria-hidden="true">TI</span>
+        <span class="brand__name">Touchline Index</span>
       </a>
 
       <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
-        <span class="theme-toggle__icon" aria-hidden="true">◐</span>
+        <span class="theme-toggle__dot" aria-hidden="true"></span>
         <span class="theme-toggle__label">Dark mode</span>
       </button>
     </header>
 
     <main>
-      <article class="card" id="article-card">
-        <div class="card__media">
-          <img
-            class="card__image"
-            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&amp;w=1200&amp;auto=format&amp;fit=crop"
-            alt="A soccer ball resting on green turf under stadium lights"
-            width="1200"
-            height="800"
-            decoding="async"
-          >
-          <p class="card__eyebrow">Modern football tactics</p>
+      <article class="dossier" id="pressing-dossier">
+        <div class="dossier__rail" aria-hidden="true">
+          <span>Issue 04</span>
+          <span>Field Notes</span>
         </div>
 
-        <div class="card__content">
-          <div class="card__meta">
-            <span class="badge">Match analysis</span>
-            <span class="read-time">11 min read</span>
+        <div class="dossier__content">
+          <div class="dossier__kicker">
+            <span class="badge">Tactical analysis</span>
+            <span class="edition">2026 edition</span>
           </div>
 
-          <h1 class="card__title">How the High Press Reshaped the Modern Game</h1>
+          <p class="dossier__index" aria-hidden="true">04</p>
 
-          <p class="card__description">
-            Explore the triggers, angles, compact spacing, and collective movement that allow teams to recover possession close to goal without losing their defensive structure.
+          <h1 class="dossier__title">
+            <span>Press.</span>
+            <span>Trap.</span>
+            <span>Recover.</span>
+          </h1>
+
+          <p class="dossier__summary">
+            A visual field guide to the triggers, cover shadows, compact distances, and coordinated runs behind football’s most aggressive defensive idea.
           </p>
 
-          <a
-            class="action-link"
-            href="https://learning.coachesvoice.com/cv/in-focus-high-press/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>Read article</span>
-            <span class="action-link__arrow" aria-hidden="true">↗</span>
-          </a>
+          <div class="dossier__footer-row">
+            <a
+              class="action-link"
+              href="https://learning.coachesvoice.com/cv/in-focus-high-press/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Open the field guide</span>
+              <span class="action-link__mark" aria-hidden="true">↗</span>
+            </a>
+
+            <p class="read-time">
+              <span>Reading time</span>
+              <strong>11 minutes</strong>
+            </p>
+          </div>
         </div>
+
+        <figure class="dossier__visual">
+          <img
+            class="dossier__image"
+            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&amp;w=1400&amp;auto=format&amp;fit=crop"
+            alt="A soccer ball resting on a green field beneath stadium lights"
+            width="1400"
+            height="933"
+            decoding="async"
+          >
+          <figcaption class="dossier__caption">
+            <span>Zone 14</span>
+            <span>Collective pressure</span>
+          </figcaption>
+          <div class="pitch-markings" aria-hidden="true"></div>
+        </figure>
       </article>
     </main>
 
     <footer class="site-footer">
-      <p>Built with semantic HTML, fluid type, perceptual color, and progressive enhancement.</p>
+      <p>Independent notes on movement, space, and modern football.</p>
     </footer>
   </div>
 
