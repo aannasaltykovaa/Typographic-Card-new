@@ -3,106 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A responsive tactical dossier explaining how the high press shapes modern soccer.">
+  <meta name="description" content="A responsive editorial card explaining the principles behind soccer's modern high press.">
   <meta name="color-scheme" content="light dark">
-  <title>Pressing Dossier | The High Press</title>
+  <title>The High Press | Touchline Journal</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="#pressing-dossier" aria-label="Touchline Index home">
-        <span class="brand__symbol" aria-hidden="true">TI</span>
-        <span class="brand__name">Touchline Index</span>
-      </a>
+  <main class="page-shell">
+    <article class="story-card" aria-labelledby="story-title">
+      <div class="story-card__topbar">
+        <a class="brand" href="#story-title" aria-label="Touchline Journal home">
+          <span class="brand__mark" aria-hidden="true">TJ</span>
+          <span>Touchline Journal</span>
+        </a>
 
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
-        <span class="theme-toggle__dot" aria-hidden="true"></span>
-        <span class="theme-toggle__label">Dark mode</span>
-      </button>
-    </header>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+          <span class="theme-toggle__icon" aria-hidden="true">◐</span>
+          <span class="theme-toggle__label">Dark mode</span>
+        </button>
+      </div>
 
-    <main>
-      <article class="dossier" id="pressing-dossier">
-        <div class="dossier__rail" aria-hidden="true">
-          <span>Issue 04</span>
-          <span>Field Notes</span>
+      <figure class="story-card__media">
+        <img
+          class="story-card__image"
+          src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=85&amp;w=1400&amp;auto=format&amp;fit=crop"
+          alt="A soccer ball on a green field under stadium lights"
+          width="1400"
+          height="933"
+          decoding="async"
+        >
+        <figcaption class="story-card__image-label">Training ground study · pressing structure</figcaption>
+      </figure>
+
+      <div class="story-card__body">
+        <div class="story-card__meta">
+          <span class="badge">Tactical analysis</span>
+          <span class="meta-note">11 min read</span>
         </div>
 
-        <div class="dossier__content">
-          <div class="dossier__kicker">
-            <span class="badge">Tactical analysis</span>
-            <span class="edition">2026 edition</span>
-          </div>
+        <h1 class="story-card__title" id="story-title">
+          Why the high press changed modern football
+        </h1>
 
-          <p class="dossier__index" aria-hidden="true">04</p>
+        <p class="story-card__description">
+          The best pressing teams do more than run hard. They control space, recognize triggers, close passing lanes, and move as one compact unit.
+        </p>
 
-          <h1 class="dossier__title">
-            <span>Press.</span>
-            <span>Trap.</span>
-            <span>Recover.</span>
-          </h1>
-
-          <p class="dossier__summary">
-            A visual field guide to the triggers, cover shadows, compact distances, and coordinated runs behind football’s most aggressive defensive idea.
-          </p>
-
-          <div class="dossier__footer-row">
-            <a
-              class="action-link"
-              href="https://learning.coachesvoice.com/cv/in-focus-high-press/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Open the field guide</span>
-              <span class="action-link__mark" aria-hidden="true">↗</span>
-            </a>
-
-            <p class="read-time">
-              <span>Reading time</span>
-              <strong>11 minutes</strong>
-            </p>
-          </div>
-        </div>
-
-        <figure class="dossier__visual">
-          <img
-            class="dossier__image"
-            src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&amp;w=1400&amp;auto=format&amp;fit=crop"
-            alt="A soccer ball resting on a green field beneath stadium lights"
-            width="1400"
-            height="933"
-            decoding="async"
+        <div class="story-card__actions">
+          <a
+            class="read-link"
+            href="https://learning.coachesvoice.com/cv/in-focus-high-press/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-          <figcaption class="dossier__caption">
-            <span>Zone 14</span>
-            <span>Collective pressure</span>
-          </figcaption>
-          <div class="pitch-markings" aria-hidden="true"></div>
-        </figure>
-      </article>
-    </main>
+            <span>Read the full analysis</span>
+            <span aria-hidden="true">↗</span>
+          </a>
 
-    <footer class="site-footer">
-      <p>Independent notes on movement, space, and modern football.</p>
-    </footer>
-  </div>
+          <p class="story-card__credit">Curated from Coaches’ Voice</p>
+        </div>
+      </div>
+    </article>
+  </main>
 
   <script>
     const root = document.documentElement;
     const toggle = document.querySelector('#theme-toggle');
     const label = toggle.querySelector('.theme-toggle__label');
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    const applyTheme = (theme) => {
+    function applyTheme(theme) {
       const isDark = theme === 'dark';
       root.dataset.theme = theme;
       toggle.setAttribute('aria-pressed', String(isDark));
       label.textContent = isDark ? 'Light mode' : 'Dark mode';
-    };
+    }
 
-    applyTheme(savedTheme ?? (systemPrefersDark ? 'dark' : 'light'));
+    applyTheme(storedTheme ?? (prefersDark ? 'dark' : 'light'));
 
     toggle.addEventListener('click', () => {
       const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
